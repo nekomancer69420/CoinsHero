@@ -54,15 +54,32 @@ function autoUseSkill()
     end)
 end
 
+function teleportAmongus(yes)
+    local gamer = game.Players.LocalPlayer
+    if gamer.Character then
+        gamer.Character.HumanoidRootPart.CFrame = yes
+    end
+end
+
+function teleportAmongusPlace(place)
+    if game:GetService("Workspace").TP:FindFirstChild(place) then
+        teleportAmongus(game:GetService("Workspace").TP[place].CFrame)
+    end
+end
+        
+
+
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
 local w = library:CreateWindow("coins simulator i guess")
 
 local b = w:CreateFolder("Autofarm")
 
-local c = w:CreateFolder("made by muffin")
+local c = w:CreateFolder("Teleport")
 
-b:Toggle("Auto Coins",function(bool) 
+local d = w:CreateFolder("made by muffin")
+
+b:Toggle("Auto Coins",function(bool)
     getgenv().jaybiggay = bool
     if bool then
         autoGetCoins()
@@ -89,6 +106,18 @@ b:Toggle("AutoSkill",function(bool)
         autoUseSkill()
     end
 end)
+
+local thereisajayamongus
+
+c:Dropdown("select place",{"2","3","4","5","6","7","8","9","10","11","12","13","14"},true,function(gayjay)
+    thereisajayamongus = gayjay
+end)
+
+c:Button("teleport to selected",function()
+    teleportAmongusPlace(thereisajayamongus)
+end)
+
+
 
 
 b:DestroyGui()
