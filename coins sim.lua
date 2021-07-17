@@ -6,7 +6,7 @@ local remotePath = game:GetService("ReplicatedStorage") -- variable that remembe
 
 function autoGetCoins()
     spawn(function()
-        while wait() do
+        game:GetService"RunService".RenderStepped:Connect(function()
             if jaybiggay then
                 local args = {
                     [1] = 1
@@ -14,22 +14,22 @@ function autoGetCoins()
                 
                 remotePath.CoinToPlayer:FireServer(unpack(args))
             end
-        end
+        end)
     end) --  now it has stopped as we have set it to false and this scroipt only runs if jaybiggay is true
-end   
+end 
 function autoSell() -- what a function is is similar to a variable it remembers what we put in it
     spawn(function() -- spawn function lets us run both at the same time if we dont have spawn function the script will only run the first one
-        while wait() do --  another loop
+        game:GetService"RunService".RenderStepped:Connect(function() --  another loop
             if jayhacker then --  check again
                 remotePath.Remotes.Sell:FireServer() -- remotepath is this variable from above
             end
-        end
+        end)
     end)
 end -- now lets rerun it with all our changes
 
 function autoBuyEgg()
     spawn(function()
-        while wait() do
+        game:GetService"RunService".RenderStepped:Connect(function()
             if jaypoggers then
                 local args = {
                     [1] = 1
@@ -37,29 +37,30 @@ function autoBuyEgg()
                 
                 remotePath.Remotes.BuyPets:InvokeServer(unpack(args))
             end
-        end
+        end)
     end)
 end --  now lets run all of this
 
 function autoUseSkill()
     spawn(function()
-        while wait() do
+        game:GetService"RunService".RenderStepped:Connect(function()
             if jayskill then
                 local args = {
-                    [1] = "Speed",
-                    [2] = "Thunder"
+                    [1] = "Speed"
                 }
                 remotePath.Remotes.Skill:FireServer(unpack(args))
             end
-        end
+        end)
     end)
-end -- autoskill
+end
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
 local w = library:CreateWindow("coins simulator i guess") -- this is the name of the game we will put here
 
 local b = w:CreateFolder("Autofarm") -- what u want in it idk yoi'll see later
+
+local c = w:CreateFolder("made by muffin")
 
 b:Toggle("Auto Coins",function(bool) -- forgot to put in global variable LOL
     getgenv().jaybiggay = bool
@@ -88,6 +89,7 @@ b:Toggle("AutoSkill",function(bool)
         autoUseSkill()
     end
 end)
+
 
 b:DestroyGui()
 
