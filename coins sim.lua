@@ -15,17 +15,17 @@ function autoGetCoins()
                 remotePath.CoinToPlayer:FireServer(unpack(args))
             end
         end)
-    end) --  now it has stopped as we have set it to false and this scroipt only runs if jaybiggay is true
+    end)
 end 
-function autoSell() -- what a function is is similar to a variable it remembers what we put in it
-    spawn(function() -- spawn function lets us run both at the same time if we dont have spawn function the script will only run the first one
-        game:GetService"RunService".RenderStepped:Connect(function() --  another loop
+function autoSell()
+    spawn(function()
+        game:GetService"RunService".RenderStepped:Connect(function()
             if jayhacker then --  check again
-                remotePath.Remotes.Sell:FireServer() -- remotepath is this variable from above
+                remotePath.Remotes.Sell:FireServer()
             end
         end)
     end)
-end -- now lets rerun it with all our changes
+end
 
 function autoBuyEgg()
     spawn(function()
@@ -56,13 +56,13 @@ end
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
-local w = library:CreateWindow("coins simulator i guess") -- this is the name of the game we will put here
+local w = library:CreateWindow("coins simulator i guess")
 
-local b = w:CreateFolder("Autofarm") -- what u want in it idk yoi'll see later
+local b = w:CreateFolder("Autofarm")
 
 local c = w:CreateFolder("made by muffin")
 
-b:Toggle("Auto Coins",function(bool) -- forgot to put in global variable LOL
+b:Toggle("Auto Coins",function(bool) 
     getgenv().jaybiggay = bool
     if bool then
         autoGetCoins()
