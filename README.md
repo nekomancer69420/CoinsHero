@@ -1,0 +1,2 @@
+# CoinsHero
+lua scripts
