@@ -1,8 +1,8 @@
-getgenv().jaybiggay = false -- global variable we have set to true
+getgenv().jaybiggay = false
 getgenv().jayhacker = false
 getgenv().jaypoggers = false
 getgenv().jayskill = false
-local remotePath = game:GetService("ReplicatedStorage") -- variable that remembers so later we can make neat script
+local remotePath = game:GetService("ReplicatedStorage")
 
 function autoGetCoins()
     spawn(function()
@@ -20,7 +20,7 @@ end
 function autoSell()
     spawn(function()
         game:GetService"RunService".RenderStepped:Connect(function()
-            if jayhacker then --  check again
+            if jayhacker then
                 remotePath.Remotes.Sell:FireServer()
             end
         end)
@@ -39,7 +39,7 @@ function autoBuyEgg()
             end
         end)
     end)
-end --  now lets run all of this
+end
 
 function autoUseSkill()
     spawn(function()
