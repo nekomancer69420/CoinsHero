@@ -1,3 +1,7 @@
+if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://pastebin.com/raw/UwFCVrhS", true))() end
+
+
+
 getgenv().jaybiggay = false
 getgenv().jayhacker = false
 getgenv().jaypoggers = false
